@@ -11,7 +11,7 @@ const Search = () => {
                     placeholder="Enter Employee Name Here" 
                     id="search"
                 />
-                <button className="btn btn-outline-secondary" 
+                <button className="btn btn-success" 
                 type="button" 
                 id="button-addon2">Search</button>
             </div>
