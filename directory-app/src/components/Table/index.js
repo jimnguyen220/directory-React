@@ -1,10 +1,15 @@
 import React, { Component }from "react";
 import "./style.css";
 import API from "../../utils/API"
+import EmployeeDetail from "./detail";
 
 class Table extends Component {
     state = {
-        image: "",
+        result: {},
+        dob: {},
+        image: {},
+        name: {},
+        search: ""
     };
 
     componentDidMount() {
@@ -14,13 +19,30 @@ class Table extends Component {
     getEmployee = () => {
         API.getUsers()
         .then(res =>
-            // console.log(res)
+
             this.setState({
-                image: res.data.data.results
-            })
-        )
+                result: res.data.results[0],
+                image: res.data.results[0].picture,
+                dob: res.data.results[0].dob,
+                name: res.data.results[0].name,                          },
+                console.log(res.data.results[0]))
+            )
         .catch(err => console.log(err));
-    }
+    };
+
+    // SEE 20-Stu_AJAX - components OmdbContainer.js
+    // handleInputChange = event => {
+    //     const value = event.target.value;
+    //     const name = event.target.name;
+    //     this.setState({
+    //         [name]: value
+    //     });
+    // };
+
+    // handleFormSubmit = event => {
+    //     event.preventDefault();
+    //     this.getEmployee(this.state.search);
+    // }
 
     render() {
     return (
@@ -35,20 +57,17 @@ class Table extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{this.state.image}</td>
-                        <td>First Last</td>
-                        <td>612-123-4567</td>
-                        <td>anymail@email.com</td>
-                        <td>02/20/1984</td>
-                    </tr>
-                    <tr>
-                        <td>Image</td>
-                        <td>First Last</td>
-                        <td>612-123-4567</td>
-                        <td>anymail@email.com</td>
-                        <td>02/20/1984</td>
-                    </tr>
+                    {this.state.result.thumbnail,
+                        <EmployeeDetail 
+                        thumbnail={this.state.image.thumbnail}
+                        first={this.state.name.first}
+                        last={this.state.name.last}
+                        cell={this.state.result.cell}
+                        email={this.state.result.email}
+                        date={this.state.dob.date}
+                    />
+                    }
+
                     <tr>
                         <td>Image</td>
                         <td>First Last</td>
@@ -56,6 +75,7 @@ class Table extends Component {
                         <td>anymail@email.com</td>
                         <td>02/20/1984</td>
                     </tr>
+
                 </tbody>
             </table>
         );
