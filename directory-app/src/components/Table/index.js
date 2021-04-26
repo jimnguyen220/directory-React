@@ -2,10 +2,12 @@ import React, { Component }from "react";
 import "./style.css";
 import API from "../../utils/API"
 import EmployeeDetail from "./detail";
+import EmployeeArray from "./array";
 
 class Table extends Component {
     state = {
-        result: {},
+        result: [],
+        oneresult: {},
         dob: {},
         image: {},
         name: {},
@@ -18,19 +20,22 @@ class Table extends Component {
     
     getEmployee = () => {
         API.getUsers()
-        .then(res =>
+        .then(res => {
+                // const employees = Array.from(res.data)
+                // this.setState({employees})
 
             this.setState({
-                result: res.data.results[0],
+                result: res.data.results,
+                oneresult: res.data.results[0],
                 image: res.data.results[0].picture,
                 dob: res.data.results[0].dob,
-                name: res.data.results[0].name,                          },
-                console.log(res.data.results[0]))
-            )
+                name: res.data.results[0].name,                 
+            })
+        })
         .catch(err => console.log(err));
     };
 
-    // SEE 20-Stu_AJAX - components OmdbContainer.js
+    // SEE 20-Stu_AJAX - components-OmdbContainer.js
     // handleInputChange = event => {
     //     const value = event.target.value;
     //     const name = event.target.name;
@@ -43,9 +48,16 @@ class Table extends Component {
     //     event.preventDefault();
     //     this.getEmployee(this.state.search);
     // }
+    
 
-    render() {
+    render() {            
+        // const displayDOB = this.state.dob.date.toLocaleTimeString();
+        // console.log(this.state.result)
+        const employee = this.state.result
+        // console.log(employee)
     return (
+
+
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -53,20 +65,23 @@ class Table extends Component {
                         <th scope="col">Name</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Email</th>
-                        <th scope="col">DOB</th>
+                        <th scope="col">Age</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {this.state.result.thumbnail,
+
+                    {this.state.image.thumbnail ? (
                         <EmployeeDetail 
                         thumbnail={this.state.image.thumbnail}
                         first={this.state.name.first}
                         last={this.state.name.last}
-                        cell={this.state.result.cell}
-                        email={this.state.result.email}
-                        date={this.state.dob.date}
+                        cell={this.state.oneresult.cell}
+                        email={this.state.oneresult.email}
+                        date={this.state.dob.age}
                     />
-                    }
+                    ) : (
+                        <h3>No results to Display</h3>
+                    )}
 
                     <tr>
                         <td>Image</td>
@@ -75,6 +90,10 @@ class Table extends Component {
                         <td>anymail@email.com</td>
                         <td>02/20/1984</td>
                     </tr>
+                    
+                    <EmployeeArray 
+                    props={employee}
+                    />
 
                 </tbody>
             </table>
