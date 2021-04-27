@@ -89,7 +89,7 @@ class Table extends Component {
                         <td>First Last</td>
                         <td>612-123-4567</td>
                         <td>anymail@email.com</td>
-                        <td>02/20/1984</td>
+                        <td>37</td>
                     </tr>
                     
                     <EmployeeArray props={employee}
