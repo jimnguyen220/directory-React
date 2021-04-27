@@ -53,8 +53,9 @@ class Table extends Component {
     render() {            
         // const displayDOB = this.state.dob.date.toLocaleTimeString();
         // console.log(this.state.result)
-        const employee = this.state.result
-        // console.log(employee)
+        const employee = this.state.result;
+
+        console.log(employee)
     return (
 
 
@@ -91,9 +92,16 @@ class Table extends Component {
                         <td>02/20/1984</td>
                     </tr>
                     
-                    <EmployeeArray 
-                    props={employee}
+                    <EmployeeArray props={employee}
+                        // thumbnail={this.state.image.thumbnail}
+                        // first={this.state.name.first}
+                        // last={this.state.name.last}
+                        // cell={this.state.oneresult.cell}
+                        // email={this.state.oneresult.email}
+                        // date={this.state.dob.age}
                     />
+                    
+
 
                 </tbody>
             </table>
