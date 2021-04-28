@@ -18,16 +18,12 @@ function EmployeeArray (props) {
                 console.log(cell);
                 const email = employee.email;
                 console.log(email);
-                const age = employee.dob.age;
-                console.log(age);
-
                 return(
                 <tr>
                     <td><img alt="employee" src={thumbnail}></img></td>
                     <td>{first} {last} </td>
                     <td>{cell}</td>
                     <td>{email}</td>
-                    <td>{age}</td>
                 </tr>
                 )
 
