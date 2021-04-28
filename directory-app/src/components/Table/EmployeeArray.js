@@ -3,9 +3,10 @@ import React from "react";
 function EmployeeArray (props) {
     console.log(props)
 
+
     return (
         <>
-            {Array.from(props.props).map(function(employee){
+            {props.props.map(function(employee){
                 console.log(employee)
                 const thumbnail = employee.picture.thumbnail;
                 console.log(thumbnail);
@@ -19,6 +20,8 @@ function EmployeeArray (props) {
                 console.log(email);
                 const age = employee.dob.age;
                 console.log(age);
+
+                return(
                 <tr>
                     <td><img alt="employee" src={thumbnail}></img></td>
                     <td>{first} {last} </td>
@@ -26,9 +29,10 @@ function EmployeeArray (props) {
                     <td>{email}</td>
                     <td>{age}</td>
                 </tr>
+                )
 
-            })
-            }
+            })}
+
         </>
     )
 
