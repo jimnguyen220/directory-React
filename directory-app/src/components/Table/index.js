@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./style.css";
 import API from "../../utils/API"
 import EmployeeArray from "./EmployeeArray";
+import Search from "./Search";
 
 class Table extends Component {
     state = {
@@ -42,6 +43,11 @@ class Table extends Component {
     render() {
 
         return (
+            <>
+            <Search 
+            handleFormSubmit={this.handleFormSubmit}
+            handleInputChange={this.handleInputChange}
+            />
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -52,14 +58,11 @@ class Table extends Component {
                     </tr>
                 </thead>
                 <tbody>
-
-
-                    <EmployeeArray props={this.state.result}
-                        handleFormSubmit={this.handleFormSubmit}
-                        handleInputChange={this.handleInputChange}
-                    />
+                    <EmployeeArray props={this.state.result}/>
                 </tbody>
             </table>
+
+            </>
         );
 
     }
