@@ -7,6 +7,7 @@ import Search from "./Search";
 class Table extends Component {
     state = {
         result: [],
+        filteredResult: [],
         search: ""
     };
 
@@ -20,6 +21,7 @@ class Table extends Component {
 
                 this.setState({
                     result: res.data.results,
+                    filteredResult: res.data.results
                 })
             })
             .catch(err => console.log(err));
@@ -33,19 +35,27 @@ class Table extends Component {
 
         console.log(value);
         console.log(name);
+        
+        let filter = this.state.result.filter(employee => {
 
+            if (value == employee.name.first || employee.name.last || employee.cell || employee.email) {
+                
+                return true;
+            }
+        })
 
         this.setState({
+            filteredResult: filter,
             [name]: value
         });
     };
 
 
 
-    // handleFormSubmit = event => {
-    //     event.preventDefault();
-    //     this.getEmployee(this.state.search);
-    // };
+    handleFormSubmit = event => {
+        event.preventDefault();
+        this.getEmployee(this.state.search);
+    };
 
     // compareBy(key) {
     //     return function (a,b) {
@@ -67,8 +77,7 @@ class Table extends Component {
         return (
             <>
                 <Search
-                    // handleFormSubmit={this.handleFormSubmit}
-
+                    handleFormSubmit={this.handleFormSubmit}
                     handleInputChange={this.handleInputChange}
                 />
 
@@ -82,7 +91,7 @@ class Table extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {(this.state.result).map((employees) =>                           
+                        {(this.state.filteredResult).map((employees) =>                           
                             <EmployeeArray 
                                 picture={employees.picture.medium}
                                 first={employees.name.first}

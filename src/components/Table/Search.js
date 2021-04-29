@@ -15,11 +15,11 @@ const Search = (props) => {
                     placeholder="Enter Employee Name Here" 
                     id="search"
                 />
-                {/* <button
+                <button
                 onClick={props.handleFormSubmit} 
                 className="btn btn-success mt-3" 
                 type="button">
-                Search</button> */}
+                Search</button>
         </form>
         
     );
