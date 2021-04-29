@@ -26,13 +26,21 @@ class Table extends Component {
     };
 
 
+
     handleInputChange = event => {
         const value = event.target.value;
         const name = event.target.name;
+
+        console.log(value);
+        console.log(name);
+
+
         this.setState({
             [name]: value
         });
     };
+
+
 
     // handleFormSubmit = event => {
     //     event.preventDefault();
@@ -60,6 +68,7 @@ class Table extends Component {
             <>
                 <Search
                     // handleFormSubmit={this.handleFormSubmit}
+
                     handleInputChange={this.handleInputChange}
                 />
 
@@ -80,7 +89,7 @@ class Table extends Component {
                                 last={employees.name.last}
                                 phone={employees.cell}
                                 email={employees.email}
-                                />
+                            />
                         )}
 
                     </tbody>
