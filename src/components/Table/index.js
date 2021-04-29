@@ -34,10 +34,10 @@ class Table extends Component {
         });
     };
 
-    handleFormSubmit = event => {
-        event.preventDefault();
-        this.getEmployee(this.state.search);
-    };
+    // handleFormSubmit = event => {
+    //     event.preventDefault();
+    //     this.getEmployee(this.state.search);
+    // };
 
     // compareBy(key) {
     //     return function (a,b) {
@@ -55,26 +55,34 @@ class Table extends Component {
 
 
     render() {
-
+        // console.log(this.state.result);
         return (
             <>
                 <Search
-                    handleFormSubmit={this.handleFormSubmit}
+                    // handleFormSubmit={this.handleFormSubmit}
                     handleInputChange={this.handleInputChange}
                 />
+
                 <table className="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Image</th>
-                            <th scope="col"
-                            // onClick={(e)=>this.sortBy(e, 'name')}
-                            >Name</th>
+                            <th scope="col">Name</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Email</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <EmployeeArray props={this.state.result}/>
+                        {(this.state.result).map((employees) =>                           
+                            <EmployeeArray 
+                                picture={employees.picture.medium}
+                                first={employees.name.first}
+                                last={employees.name.last}
+                                phone={employees.cell}
+                                email={employees.email}
+                                />
+                        )}
+
                     </tbody>
                 </table>
 
