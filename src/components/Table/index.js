@@ -36,12 +36,16 @@ class Table extends Component {
         console.log(value);
         console.log(name);
         
-        let filter = this.state.result.filter(employee => {
+        let filter = (this.state.result).filter(employee => {
+            if (value == employee.name.first) {
 
-            if (value == employee.name.first || employee.name.last || employee.cell || employee.email) {
-                
+                return true;
+            }  else if (value == employee.name.last) {
+
                 return true;
             }
+  
+
         })
 
         this.setState({
@@ -52,38 +56,19 @@ class Table extends Component {
 
 
 
-    handleFormSubmit = event => {
-        event.preventDefault();
-        this.getEmployee(this.state.search);
-    };
-
-    // compareBy(key) {
-    //     return function (a,b) {
-    //         if (a[key] < b[key]) return -1;
-    //         if (a[key] > b[key]) return 1;
-    //         return 0;
-    //     }
-    // }
-
-    // sortBy(key) {
-    //     let array = [...this.state.result];
-    //     array.sort(this.compareBy(key));
-    //     this.setState({ result: array })
-    // }
-
 
     render() {
-        // console.log(this.state.result);
+        // console.log(this.state.filteredResult);
         return (
             <>
                 <Search
-                    handleFormSubmit={this.handleFormSubmit}
                     handleInputChange={this.handleInputChange}
+                    search={this.state.search}
                 />
 
                 <table className="table table-striped">
                     <thead>
-                        <tr>
+                        <tr key="main-head">
                             <th scope="col">Image</th>
                             <th scope="col">Name</th>
                             <th scope="col">Phone</th>
@@ -93,6 +78,7 @@ class Table extends Component {
                     <tbody>
                         {(this.state.filteredResult).map((employees) =>                           
                             <EmployeeArray 
+                                id={employees.login.username}
                                 picture={employees.picture.medium}
                                 first={employees.name.first}
                                 last={employees.name.last}
