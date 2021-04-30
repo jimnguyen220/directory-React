@@ -17,6 +17,7 @@
   ![demo](./assets/filtered.gif)
   
   
+  https://jimnguyen220.github.io/directory-React/
   ------------------------------------
   
   ## Installation
